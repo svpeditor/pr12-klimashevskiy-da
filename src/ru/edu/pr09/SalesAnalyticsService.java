@@ -39,15 +39,11 @@ public class SalesAnalyticsService {
 
     // нет продаж в регионе - 0
     public double averageByRegion(List<Sale> sales, String region) {
-        double sum = 0;
-        int n = 0;
-        for (Sale s : sales) {
-            if (s.region().equals(region)) {
-                sum += s.amount();
-                n++;
-            }
-        }
-        return n == 0 ? 0.0 : sum / n;
+        return sales.stream()
+                .filter(s -> s.region().equals(region))
+                .mapToDouble(Sale::amount)
+                .average()
+                .orElse(0.0);
     }
 
     // без побочного эффекта: результат собирает toList, внешний список не нужен
