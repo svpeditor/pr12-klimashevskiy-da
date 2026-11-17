@@ -1,0 +1,12 @@
+id;manager;region;amount
+S1;Ivanov;Moscow;150000
+S2;Petrova;SPb;92000
+S5;Lee;Kazan;92000
+S6;Smirnov;Omsk;25000
+S7;Smirnov;Omsk;24999.99
+S8;Petrova;SPb;0
+S1;Ivanov;Moscow;1000
+S9;;Kazan;5000
+S10;Lee;Kazan;-500
+S11;Lee;Kazan;abc
+S12;Lee;Kazan
