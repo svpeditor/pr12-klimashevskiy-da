@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 
 // исходный список нигде не меняется, каждый метод возвращает новый результат
 public class SalesAnalyticsService {
-    // крупная сделка - от 100 000 рублей
-    public static final double LARGE_DEAL_MIN = 100000;
+    // вариант 4: крупная сделка - от 25 000 рублей
+    public static final double LARGE_DEAL_MIN = 25000;
 
     // сначала по сумме по убыванию, при равной сумме по id
     public static final Comparator<Sale> BY_AMOUNT_DESC_THEN_ID =

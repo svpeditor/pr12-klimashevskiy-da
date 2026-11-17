@@ -20,6 +20,7 @@ public class SelfCheck {
         checkTopAndSort();
         checkMaxAndGroups();
         checkNoSideEffects();
+        checkVariant();
         System.out.println("Unit: " + passed + "/" + count + " passed");
         // свой файл: java -cp out ru.edu.pr09.SelfCheck data/my.csv
         runFile(args.length > 0 ? args[0] : "data/sample.csv");
@@ -69,6 +70,18 @@ public class SelfCheck {
         check("source unchanged", sales.equals(before));
         // неизменяемый список на входе тоже работает
         check("immutable input", SERVICE.topSales(List.copyOf(sales), 0, 4).size() == 4);
+    }
+
+    private static void checkVariant() {
+        // вариант 4: крупная сделка от 25 000
+        check("variant threshold 25000", SalesAnalyticsService.LARGE_DEAL_MIN == 25000);
+        check("variant 24999.99", !SERVICE.isLarge(new Sale("A", "Lee", "Kazan", 24999.99)));
+        check("variant 25000", SERVICE.isLarge(new Sale("B", "Lee", "Kazan", 25000)));
+        List<Sale> mixed = List.of(new Sale("A", "Lee", "Kazan", 24999.99), new Sale("B", "Lee", "Kazan", 25000),
+                new Sale("C", "Ivanov", "Moscow", 12000), new Sale("D", "Petrova", "SPb", 92000));
+        List<Sale> large = SERVICE.largeSales(mixed);
+        check("variant large sales", large.size() == 2 && large.get(0).id().equals("B") && large.get(1).id().equals("D"));
+        check("variant top", SERVICE.topSales(mixed, SalesAnalyticsService.LARGE_DEAL_MIN, 5).get(0).id().equals("D"));
     }
 
     // ---------- вспомогательные методы ----------
