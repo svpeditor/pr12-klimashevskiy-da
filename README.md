@@ -17,7 +17,7 @@ java -cp out ru.edu.pr09.SelfCheck
 Или скриптом: `./run_selfcheck.sh` (macOS/Linux), `run_selfcheck.bat` (Windows).
 
 Сначала выполняются проверки, потом обрабатывается `data/sample.csv` (формат `id;manager;region;amount`, первая строка - заголовок).
-Свой файл: `java -cp out ru.edu.pr09.SelfCheck data/boundaries.csv`. 
+Свой файл: `java -cp out ru.edu.pr09.SelfCheck data/boundaries.csv`.
 
 Пакет называется `ru.edu.pr09`, как в исходном проекте.
 
